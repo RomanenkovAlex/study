@@ -1,0 +1,1 @@
+run="make && echo \"\\033[0;31mRunning...\\033[0m\" && ./bin/a.out; echo \"\\033[0;31mStopped...\\033[0m\""

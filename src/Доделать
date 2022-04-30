@@ -1,0 +1,87 @@
+// getopt()
+// getopt_long()
+
+// ls -l -a -s
+// ls -las
+// head -n 5
+// -h -> help
+// --help
+
+#include <stdio.h>
+#include <getopt.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stddef.h>
+
+#include <lc_math.h>
+
+void show_args(int argc, char** argv)
+{
+	printf("%d\n", argc);
+	for (int i = 0; i < argc; ++i)
+		printf("argv[%d]: \"%s\"\n", i, argv[i]);
+}
+
+
+// usage: math [-p] [-c] [-a] [-s] [-h] number
+// p - check prime number
+// c - canonical
+// a - amount of divisors
+// s - sum of divisors
+// h - help
+int main(int argc, char *argv[])
+{
+	int size = 0;
+	int* res = resheto(40, &size);
+
+	for (int i = 2; i < size; i++)
+	{
+		printf("%d ", res[i]);
+	}
+	printf("\n");
+	return 0;
+
+	int flags, opt;
+   int nsecs, tfnd;
+
+   nsecs = 0;
+   tfnd = 0;
+   flags = 0;
+   while ((opt = getopt(argc, argv, "nt:")) != -1) {
+	   switch (opt) {
+	    case 'n':
+			flags = 1;
+			break;
+	    case 't':
+			nsecs = atoi(optarg);
+			tfnd = 1;
+			break;
+		case 'p':
+		   is_prime(atoi(argv[2]));
+		   break;
+		default: /* '?' */
+		   fprintf(stderr, "Usage: %s [-t nsecs] [-n] name\n",
+				   argv[0]);
+		   return -1;
+	   }
+   }
+
+   printf("flags=%d; tfnd=%d; nsecs=%d; optind=%d\n",
+		   flags, tfnd, nsecs, optind);
+
+	if (optind >= argc) {
+	   fprintf(stderr, "Expected argument after options\n");
+		return -1;
+	}
+	else if (optind + 1 < argc)
+	{
+		fprintf(stderr, "too much files\n");
+		return -1;
+	}
+
+   printf("name argument = %s\n", argv[optind]);
+
+   /* Other code omitted */
+
+	return 0;
+}
