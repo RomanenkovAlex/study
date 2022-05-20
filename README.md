@@ -1,1 +1,1 @@
-https://github.com/coreutils/coreutils/blob/master/src/ls.c
+git://git.sv.gnu.org/coreutils.git
